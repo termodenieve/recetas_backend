@@ -78,4 +78,18 @@ module.exports = {
             }
         });
     },
+    getNames(req, res) {
+        id_user = req.query.id_user;
+
+        var sql = 'SELECT nombre FROM categorias WHERE id_user=' + id_user;
+        conexion.query(sql, function (err, results, fields) {
+            if (err) {
+                console.log(err);
+                res.status(500).send('Intenta más tarde');
+            } else {
+                console.log(results);
+                res.status(200).send({ categorias: results });
+            }
+        });
+    }
 };

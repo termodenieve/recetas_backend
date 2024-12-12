@@ -44,13 +44,14 @@ app.get('/users/:id', userController.getById); // Obtener un usuario por ID espe
 app.post('/categorias', [md_auth.Auth], categoriasController.save);
 app.put('/categorias', categoriasController.update);
 app.delete('/categorias', categoriasController.delete);
-app.get('/categorias', [md_auth.Auth], categoriasController.getAll);
+app.get('/categorias', categoriasController.getAll);
+app.get('/categorias/names', categoriasController.getNames); 
 
 //recetas postrecitos
 app.post('/recetas', [md_auth.Auth, md_upload], recetasController.save);
-app.get('/recetas', [md_auth.Auth], recetasController.getAll);
+app.get('/recetas', recetasController.getAll);
 app.delete('/recetas', recetasController.delete);
-app.put('/recetas', [md_auth.Auth, md_upload], recetasController.update);
+app.put('/recetas', recetasController.update);
 
 app.get('*', (req, res) => {
     res.send({ message: 'Ruta no válida' });
